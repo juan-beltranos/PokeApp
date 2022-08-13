@@ -1,44 +1,27 @@
-import { usePokemon } from "../hooks/usePokemon"
+import { usePalette } from 'react-palette'
+import { Link } from 'react-router-dom'
+
+import img from '../assets/pokebola-blanca.png'
 
 export const PokemonCard = ({ pokemon }) => {
 
     const { name, picture, id } = pokemon
-    const { isLoading, pokemonData } = usePokemon(id)
-    const { abilities, moves, base_experience, sprites, types } = pokemonData
-
-    console.log(pokemonData);
+    const { data } = usePalette(picture)
 
     return (
-        <div className="border border-light rounded p-2 border-opacity-10 text-center " >
-            <p className="text-light">Exp: {base_experience}</p>
-            <img src={picture} width={'200px'} />
-            <div className="card-body ">
-                <div className="mt-3">
-                    <h5 className=" text-uppercase text-danger">{name}</h5>
+        <div className="border border-light rounded p-2 border-opacity-10 text-center text-light pe-auto" style={{ backgroundColor: data.darkVibrant, cursor: 'pointer' }}  >
+            <Link to={`/pokemon/${id}`} className="text-light">
+                <div className='d-flex align-items-center justify-content-between border-bottom p-2'>
+                    <img src={img} alt="pobola" width={40} />
+                    <p className='text-warning'>{id}</p>
                 </div>
-                <h4>Sprites</h4>
-                {
-                    isLoading ? <div className="spinner-border text-danger" role="status"></div>
-                        :
-                        <div>
-                            <img src={sprites.front_default} width={'100px'} />
-                            <img src={sprites.front_shiny} width={'100px'} />
-                        </div>
-                }
-                {
-                    isLoading ? <div className="spinner-border text-danger" role="status"></div>
-                        :
-                        <div className="d-flex justify-content-evenly">
-                            <h6 className="text-warning">Types:</h6>
-                            {
-                                types.map(doc => (
-                                    <p key={doc.type.name} className="text-light">{doc.type.name}</p>
-                                ))
-                            }
-                        </div>
-                }
-            </div>
-            <button className="btn btn-danger">Ver perfil</button>
+                <div className="card-body ">
+                    <img src={picture} width={'100px'} />
+                    <div className="mt-3">
+                        <h5 className=" text-uppercase fw-bold">{name}</h5>
+                    </div>
+                </div>
+            </Link>
         </div>
     )
 }

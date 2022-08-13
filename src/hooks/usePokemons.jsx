@@ -12,7 +12,7 @@ export const usePokemons = () => {
 
     const getPokemons = async () => {
         try {
-            const res = await pokeApi.get('https://pokeapi.co/api/v2/pokemon?limit=10')
+            const res = await pokeApi.get('https://pokeapi.co/api/v2/pokemon?limit=20')
             setPokemon(res.data.results)
         } catch (error) {
             console.log(error);

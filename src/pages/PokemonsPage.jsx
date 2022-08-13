@@ -9,7 +9,7 @@ export const PokemonsPage = () => {
         <div className="container row">
             {
                 pokeData.map(poke => (
-                    <div className="col-md-4 mb-2" key={poke.id}>
+                    <div className="col-md-3 mb-2" key={poke.id}>
                         <PokemonCard
                             pokemon={poke}
                         />
