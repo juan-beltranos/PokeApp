@@ -11,7 +11,7 @@ export const App = () => {
 
   return (
 
-    <div className="container p-5">
+    <div className=" ">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<PokemonsPage />} />
